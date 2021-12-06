@@ -102,7 +102,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         """
         return self.username
 
-def _generate_jwt_token(self):
+    def _generate_jwt_token(self):
         """
         Generates a JSON Web Token that stores this user's ID and has an expiry
         date set to 60 days into the future.
@@ -146,3 +146,5 @@ class Visit(models.Model):
 
     def __str__(self):
         return self.doctor, self.address, self.date
+    
+    

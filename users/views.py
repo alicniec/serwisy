@@ -94,3 +94,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+#class VisitViewSet(viewsets.ModelViewSet):
+    #querry set
+    #walidacje
