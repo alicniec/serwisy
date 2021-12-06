@@ -1,4 +1,5 @@
-from .models import Doctor, Patient
+from rest_framework.serializers import ListSerializer
+from .models import Doctor, Patient, Visit
 from .serializers import DoctorSerializer
 from .serializers import PatientSerializer
 from rest_framework import mixins, viewsets
@@ -11,7 +12,7 @@ from rest_framework.views import APIView
 
 from .renderers import UserJSONRenderer
 from .serializers import (
-    LoginSerializer, RegistrationSerializer, UserSerializer
+    LoginSerializer, RegistrationSerializer, UserSerializer, VisitSerizalier
 )
 
 
@@ -95,6 +96,6 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-#class VisitViewSet(viewsets.ModelViewSet):
-    #querry set
-    #walidacje
+class VisitViewSet(viewsets.ModelViewSet):
+    queryset = Visit.objects.all()
+    serializer_class = VisitSerizalier
