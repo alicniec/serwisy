@@ -5,7 +5,7 @@ from django.db.models import fields
 from rest_framework import serializers
 # from profiles.serializers import ProfileSerializer
 
-from .models import User, Visit
+from .models import User
 from .models import Doctor, Patient
 
 
@@ -165,12 +165,3 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
-
-class VisitSerizalier(serializers.ModelSerializer):
-
-    class Meta:
-        model = Visit
-        fields = (
-            'doctor', 'patient', 'address', 'date'
-        )
-    
