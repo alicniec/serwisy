@@ -7,6 +7,7 @@ from rest_framework import authentication, exceptions
 from .models import Doctor, Patient
 
 
+
 class JWTAuthentication(authentication.BaseAuthentication):
     authentication_header_prefix = 'Token'
 
@@ -71,10 +72,13 @@ class JWTAuthentication(authentication.BaseAuthentication):
         successful, return the user and token. If not, throw an error.
         """
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY)
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
         except:
             msg = 'Invalid authentication. Could not decode token.'
             raise exceptions.AuthenticationFailed(msg)
+        
+        patient = None
+        doctor = None
 
         try:
             doctor = Doctor.objects.get(pk=payload['id'])
